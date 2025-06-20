@@ -20,7 +20,7 @@ async def edit(req: EditRequest):
         "Respond with just the rewritten text.\n\n" + req.body
     )
     try:
-        resp = openai.ChatCompletion.create(
+        resp = await openai.ChatCompletion.acreate(
             model="gpt-4",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.7,
