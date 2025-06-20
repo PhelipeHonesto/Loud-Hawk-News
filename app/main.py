@@ -5,7 +5,14 @@ import os
 
 app = FastAPI()
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+api_key = os.getenv("OPENAI_API_KEY")
+if not api_key:
+    raise RuntimeError(
+        "OPENAI_API_KEY environment variable not set. "
+        "Please add it to your .env file or environment."
+    )
+
+openai.api_key = api_key
 
 class EditRequest(BaseModel):
     title: str
